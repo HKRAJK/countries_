@@ -23,7 +23,7 @@ const Country = ({ country }) => {
         }
          getData();
  
-    }, [])
+    }, [country.capital])
 
     if (weather.length > 0) {
         const currentWeather = weather[0]
