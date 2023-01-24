@@ -7,20 +7,22 @@ const Country = ({ country }) => {
     const [weather, setWeather] = useState([])
 
     useEffect(() => {
+        const getData = async ()=>{
         const param = {
             access_key: process.env.REACT_APP_API_KEY,
             query: country.capital
         }
-
-        axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${param.query}&appid=${param.access_key}`)
+           axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${param.query}&appid=${param.access_key}`)
             .then(response => {
                 const apiResponse = response.data
-            //    console.log(apiResponse)
-        //        console.log(`Current temperature in ${apiResponse.name} is ${apiResponse.main.temp}`);
+     
                 setWeather([apiResponse])
             }).catch(error => {
                 console.log(error);
             })
+        }
+         getData();
+ 
     }, [])
 
     if (weather.length > 0) {
